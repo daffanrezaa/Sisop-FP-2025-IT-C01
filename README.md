@@ -37,8 +37,6 @@ Struktur repository:
 
 ## Pengerjaan
 
-> Insert poin soal...
-
 **Teori**
 
 ...
@@ -104,11 +102,26 @@ Struktur repository:
     }
   ```
 
+- Cara Compile dan Run Program
+  - Compile :
+    `gcc fork_simulation.cpp -o fork_simulation.exe`
+
+  - Run :
+    `./fork_simulation`
+
+
+
   
 
 **Video Menjalankan Program**
 
 [Klik di sini untuk melihat video menjalankan program](assets/DEMO_PROGRAM_SIMULASI_FORK.mp4)
+
+
+**Gambar Output Program**
+
+![output](assets/Output_Fork_Simulation.png)
+
 
 ## Daftar Pustaka
 
