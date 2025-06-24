@@ -30,7 +30,7 @@ Buat program untuk simulasi fork dalam jumlah banyak dengan delay yang berbeda-b
 Struktur repository:
 ```
 .
-├── fork_simulation.c   # File Utama
+├── fork_sim.c   # File Utama
 ├── README.md           # Dokumentasi 
 
 ```
@@ -104,10 +104,10 @@ Struktur repository:
 
 - Cara Compile dan Run Program
   - Compile :
-    `gcc fork_simulation.cpp -o fork_simulation.exe`
+    `gcc fork_sim.cpp -o fork_simu.exe`
 
   - Run :
-    `./fork_simulation`
+    `./fork_sim`
 
 
 
