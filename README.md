@@ -12,29 +12,27 @@
 9. Jika ditemukan indikasi kecurangan dalam bentuk apapun di pengerjaan soal final project, maka nilai dianggap 0.
 10. Pengerjaan soal final project sesuai dengan modul yang telah diajarkan.
 
-## Kelompok x
+## Kelompok C01
 
 Nama | NRP
 --- | ---
-... | 5027241xxx
-... | 5027241xxx
-... | 5027241xxx
-... | 5027241xxx
+Diva Aulia Rosa | 5027241003
+Aditya Reza Daffansyah | 5027241034
+Hanif Mawla Faizi | 5027241064
+Nafis Faqih Allmuzaky Maolidi | 5027241095
 
 ## Deskripsi Soal
-
-> Insert testcase... (contoh dibawah) // hapus line ini
-
-Memahami race condition pada operasi check-then-act. Program membuat 2 thread; tiap thread mencoba mengambil satu-satunya sumber daya yang tersedia dari variabel global stok (nilai awal 1). Jika tanpa mutex, kedua thread bisa lolos pengecekan dan sama-sama mengambil sumber daya, menghasilkan nilai akhir stok menjadi -1.
+### Fork Wait Race
+Buat program untuk simulasi fork dalam jumlah banyak dengan delay yang berbeda-beda untuk mengeluarkan sebuah print statement, sehingga muncul sebuah urutan berdasarkan delay masing-masing fork.
 
 ### Catatan
-
-> Insert catatan dari pengerjaan kalian... (contoh dibawah) // hapus line ini
 
 Struktur repository:
 ```
 .
-..
+├── fork_simulation.c   # File Utama
+├── README.md           # Dokumentasi 
+
 ```
 
 ## Pengerjaan
@@ -47,17 +45,65 @@ Struktur repository:
 
 **Solusi**
 
-...
+- Inisialisasi dan Setup
+  Mendefinisikan jumlah fork dan warna untuk output terminal. Seed random akan diinisialisasi di proses induk.
+  ```
+  #define NUM_FORKS 5
+  #define COLOR_RESET   "\x1b[0m"
+  #define COLOR_RED     "\x1b[31m"
+  #define COLOR_GREEN   "\x1b[32m"
+  #define COLOR_YELLOW  "\x1b[33m"
+  #define COLOR_BLUE    "\x1b[34m"
+  #define COLOR_MAGENTA "\x1b[35m"
+  #define COLOR_CYAN    "\x1b[36m"
 
-> Insert poin soal...
+  srand(time(NULL)); 
+  printf(COLOR_BLUE "Proses Induk (PID: %d) memulai simulasi...\n" COLOR_RESET, getpid());
+  ```
+  
+- Membuat Child Process
+  Parent process akan menjalankan loop untuk membuat proses anak sebanyak `NUM_FORKS`. Setiap fork menghasilkan proses anak baru. Jika eror maka akan ada error mesagge.
+  ```
+  for (int i = 0; i < NUM_FORKS; i++) {
+        pid = fork();
+        if (pid == -1) {
+            perror(COLOR_RED "Fork failed" COLOR_RESET);
+            exit(EXIT_FAILURE);
+        } else if (pid == 0) {
+            ...
+        }
+    }
+  ```
 
-**Teori**
+- Random Sleep dan Keluar pada Child Process
+  Setiap child process akan mengatur seed random dengan `getpid()`, menentukan delay acak 1 - 5 detik, sleep selama delay tersebut, dan mengeluarkan status sukses.
+  ```
+  srand(getpid());
+            int delay_time = rand() % 5 + 1; 
 
-...
+            printf(COLOR_YELLOW "[Child PID: %d] (Parent PID: %d) akan tidur selama %d detik...\n" COLOR_RESET, getpid(), getppid(), delay_time);
+            sleep(delay_time);
+            printf(COLOR_CYAN "[Child PID: %d] Selesai dengan delay %d detik\n" COLOR_RESET, getpid(), delay_time);
+            exit(EXIT_SUCCESS); 
+  ```
 
-**Solusi**
-
-...
+- Parent Process Akan Menunggu Setiap Child Process
+  Parent Process akan menunggu setiap anak selesai, satu per satu, dan mencetak status keluar masing-masing.
+  ```
+  for (int i = 0; i < NUM_FORKS; i++) {
+        pid_t child_pid = wait(&status); 
+        if (child_pid == -1) {
+            perror(COLOR_RED "wait failed" COLOR_RESET); 
+            exit(EXIT_FAILURE);
+        }
+        if (WIFEXITED(status) && WEXITSTATUS(status) == EXIT_SUCCESS) {
+            printf(COLOR_GREEN "Proses Induk: Anak dengan PID %d telah selesai dengan status %d (SUKSES).\n" COLOR_RESET, child_pid, WEXITSTATUS(status));
+        } else {
+            printf(COLOR_RED "Proses Induk: Anak dengan PID %d selesai dengan status %d (GAGAL).\n" COLOR_RESET, child_pid, WEXITSTATUS(status));
+        }
+    }
+  ```
+  
 
 **Video Menjalankan Program**
 ...
