@@ -43,7 +43,7 @@ Simulasi Fork dan Sinkronisasi Proses
 Dalam sistem operasi modern, kemampuan menciptakan dan mengelola proses sangat penting. Sistem call seperti fork() di Unix/Linux memberikan kemampuan kepada sebuah program untuk membuat turunan proses secara paralel. Simulasi ini bertujuan untuk memahami bagaimana proses anak dapat berjalan dengan delay acak, serta bagaimana proses induk dapat menunggu dan mengelola proses anak tersebut menggunakan wait().
 
 ## 2. Konsep Dasar
-# 2.1 Proses dan Sistem Call fork()
+### 2.1 Proses dan Sistem Call fork()
 Proses merupakan entitas aktif yang memuat eksekusi program, termasuk register, stack, heap, dan state lainnya. Sistem call fork() digunakan untuk membuat salinan dari proses saat ini, menciptakan proses anak yang identik kecuali untuk PID-nya. Dalam praktiknya: proses induk menerima PID dari anak dan proses anak menerima nilai 0.
 “fork() returns a 0 to the newly created child process and returns the child's process ID to the parent.” — Silberschatz et al., 2020
 
