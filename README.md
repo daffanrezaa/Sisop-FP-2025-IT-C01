@@ -39,28 +39,28 @@ Struktur repository:
 
 **Teori**
 Simulasi Fork dan Sinkronisasi Proses
-##1. Pendahuluan
+## 1. Pendahuluan
 Dalam sistem operasi modern, kemampuan menciptakan dan mengelola proses sangat penting. Sistem call seperti fork() di Unix/Linux memberikan kemampuan kepada sebuah program untuk membuat turunan proses secara paralel. Simulasi ini bertujuan untuk memahami bagaimana proses anak dapat berjalan dengan delay acak, serta bagaimana proses induk dapat menunggu dan mengelola proses anak tersebut menggunakan wait().
 
-##2. Konsep Dasar
-#2.1 Proses dan Sistem Call fork()
+## 2. Konsep Dasar
+# 2.1 Proses dan Sistem Call fork()
 Proses merupakan entitas aktif yang memuat eksekusi program, termasuk register, stack, heap, dan state lainnya. Sistem call fork() digunakan untuk membuat salinan dari proses saat ini, menciptakan proses anak yang identik kecuali untuk PID-nya. Dalam praktiknya: proses induk menerima PID dari anak dan proses anak menerima nilai 0.
 “fork() returns a 0 to the newly created child process and returns the child's process ID to the parent.” — Silberschatz et al., 2020
 
-#2.2 Konsep Delay dan Sleep
+# 2.2 Konsep Delay dan Sleep
 Setiap proses anak disimulasikan memiliki waktu eksekusi yang berbeda menggunakan fungsi sleep(). Fungsi ini menunda eksekusi proses selama sejumlah detik, yang dalam konteks ini disetel secara acak (rand() % 5 + 1), mencerminkan variasi beban kerja atau waktu tanggap proses dalam sistem nyata.
 
-#2.3 Sinkronisasi Proses dengan wait()
+# 2.3 Sinkronisasi Proses dengan wait()
 Proses induk harus memanggil wait() untuk: mengetahui kapan proses anak selesai dan menghindari zombie process (proses yang sudah selesai tapi belum diambil statusnya). Fungsi wait() akan memblokir proses induk hingga satu proses anak menyelesaikan eksekusinya, lalu mengembalikan PID-nya dan status keluarannya.
 
-#2.4 Penggunaan Warna Output (ANSI Escape Codes)
+# 2.4 Penggunaan Warna Output (ANSI Escape Codes)
 Untuk meningkatkan keterbacaan, pewarnaan digunakan melalui kode ANSI. Contoh warna: Biru (proses induk), Kuning (status delay anak), Cyan (anak selesai), Hijau (sukses), Merah (error). Ini membantu debugging visual dan pelacakan log pada sistem real-time.
 
-##3. Implementasi Simulasi
-#3.1 Struktur Program
+## 3. Implementasi Simulasi
+# 3.1 Struktur Program
 Program utama menciptakan NUM_FORKS proses anak. Proses anak memiliki delay acak dan akan keluar setelah delay.
 
-#3.2 Alur Eksekusi
+# 3.2 Alur Eksekusi
 1. Proses induk memulai simulasi dan menyiapkan seed acak.
 2. Proses induk membuat 5 anak menggunakan fork().
 3. Setiap anak tidur dengan delay acak dan keluar dengan exit().
