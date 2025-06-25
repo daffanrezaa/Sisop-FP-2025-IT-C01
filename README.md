@@ -44,7 +44,7 @@ Dalam sistem operasi modern, kemampuan menciptakan dan mengelola proses sangat p
 
 ## 2. Konsep Dasar
 # 2.1 Proses dan Sistem Call fork()
-Proses merupakan entitas aktif yang memuat eksekusi program, termasuk register, stack, heap, dan state lainnya. Sistem call fork() digunakan untuk membuat salinan dari proses saat ini, menciptakan proses anak yang identik kecuali untuk PID-nya. Dalam praktiknya: proses induk menerima PID dari anak dan proses anak menerima nilai 0.
+Proses merupakan entitas aktif yang memuat eksekusi program, termasuk register, stack, heap, dan state lainnya. Sistem call fork() digunakan untuk membuat salinan atau duplikasi dari proses saat ini, menciptakan proses anak yang identik kecuali untuk PID-nya. Dalam praktiknya: proses induk menerima PID dari anak dan proses anak menerima nilai 0.
 “fork() returns a 0 to the newly created child process and returns the child's process ID to the parent.” — Silberschatz et al., 2020
 
 # 2.2 Konsep Delay dan Sleep
