@@ -41,6 +41,7 @@ Struktur repository:
 ### Simulasi Fork dan Sinkronisasi Proses
 # 1. Pendahuluan
 Dalam dunia sistem operasi modern, kemampuan untuk menjalankan berbagai program secara bersamaan merupakan inti dari fungsionalitas dan efisiensi. Kemampuan ini terwujud melalui konsep "proses", sebuah unit eksekusi mandiri yang memiliki sumber dayanya sendiri. Namun, bagaimana sebuah sistem operasi dapat menciptakan proses-proses baru ini? Jawabannya terletak pada "system call", antarmuka yang memungkinkan program berinteraksi langsung dengan kernel sistem operasi. Di antara berbagai system call yang vital, fork() menonjol sebagai salah satu yang paling fundamental dan transformatif, khususnya dalam arsitektur sistem operasi berbasis Unix.
+
 Untuk gambaran mudahnya kita bisa mengumpamakan laptop kita yang sedang menjalankan banyak aplikasi sekaligus: browser web, pemutar musik, dan yang lainnya. Setiap aplikasi ini sebenarnya adalah sebuah proses. Gampangnya, proses itu seperti sebuah "pekerja" independen di dalam laptop kita. Setiap pekerja punya tugasnya sendiri, punya area kerjanya sendiri (memori), dan punya alat-alatnya sendiri (register CPU).
 Nah, bagaimana sebuah komputer bisa menciptakan pekerja-pekerja baru ini? Di sinilah peran panggilan sistem (system call) masuk. Panggilan sistem itu seperti "perintah khusus" yang bisa diberikan program kepada otak utama komputer (disebut kernel sistem operasi) untuk melakukan sesuatu yang penting. Salah satu perintah khusus yang sangat penting adalah fork().
 
@@ -62,6 +63,24 @@ Dari tiga sumber di atas dapat disimpulkan secara umum bahwa fork() adalah syste
 
 # 2.2 Konsep Delay dan Sleep
 Setiap proses anak disimulasikan memiliki waktu eksekusi yang berbeda menggunakan fungsi sleep(). Fungsi ini menunda eksekusi proses selama sejumlah detik, yang dalam konteks ini disetel secara acak (rand() % 5 + 1), mencerminkan variasi beban kerja atau waktu tanggap proses dalam sistem nyata.
+
+- Menurut "Operating System Concepts" oleh Silberschatz, Galvin, dan Gagne
+  Pengaruh sleep() pada Urutan Eksekusi, bahwa setelah fork(), kedua proses (induk
+  dan anak) berjalan secara bersamaan (konkuren). Tidak ada jaminan pasti mengenai
+  urutan eksekusi relatif antara proses induk dan anak, kecuali jika ada mekanisme
+  sinkronisasi yang eksplisit. Jika salah satu proses memanggil sleep(), proses
+  tersebut akan menghentikan eksekusinya untuk jangka waktu yang ditentukan,
+  memungkinkan proses lain (induk atau anak) untuk dieksekusi lebih dulu oleh
+  penjadwal sistem operasi.
+
+- Menurut  "Advanced Programming in the UNIX Environment" oleh W. Richard Stevens dan Stephen A. Rago
+  sleep() sebagai Fungsi Penundaan Waktu: Stevens dan Rago merinci sleep() sebagai
+  fungsi standar POSIX yang menunda eksekusi proses pemanggil untuk sejumlah detik
+  yang ditentukan. Fungsi ini adalah salah satu cara paling sederhana untuk
+  memperkenalkan jeda. Dalam konteks fork(), baik proses induk maupun proses anak
+  dapat memanggil sleep().
+
+Dari kedua suber di atas dapat disimpulkan secara umum, sleep() adalah system call yang digunakan untuk menunda eksekusi proses untuk durasi waktu tertentu. Ketika digunakan bersamaan dengan fork(), sleep() dapat ditempatkan di proses induk atau anak untuk mengendalikan (secara non-deterministik) urutan eksekusi relatif antara kedua proses tersebut. Ini berguna untuk simulasi, observasi perilaku penjadwal, atau memberikan jeda sederhana.
 
 # 2.3 Sinkronisasi Proses dengan wait()
 Proses induk harus memanggil wait() untuk: mengetahui kapan proses anak selesai dan menghindari zombie process (proses yang sudah selesai tapi belum diambil statusnya). Fungsi wait() akan memblokir proses induk hingga satu proses anak menyelesaikan eksekusinya, lalu mengembalikan PID-nya dan status keluarannya.
