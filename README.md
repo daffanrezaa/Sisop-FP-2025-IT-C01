@@ -214,15 +214,23 @@ Melalui simulasi ini, kita memahami secara praktis cara kerja fork() dalam menci
 
 ## Daftar Pustaka
 Silberschatz, A., Galvin, P. B., & Gagne, G. (2020). 
+
 Operating System Concepts (10th ed.). Wiley.
+
 Tanenbaum, A. S., & Bos, H. (2015). 
-Modern Operating Systems (4th ed.). Pearson.
-Kerrisk, M. (2010). 
-The Linux Programming Interface: A Linux and UNIX System Programming Handbook. 
+
+Modern Operating Systems (4th ed.). Pearson. Kerrisk, M. (2010). 
+
+The Linux Programming Interface: A Linux and UNIX System Programming Handbook.
+
 Robbins, K. A., & Robbins, S. (2003). 
+
 Unix Systems Programming: Communication, Concurrency and Threads. Prentice Hall. Bach, M. J. (1986). 
+
 The Design of the UNIX Operating System. Prentice-Hall. Stallings, W. (2018). 
-Operating Systems: Internals and Design Principles (9th ed.). 
-Pearson. Love, R. (2010). 
+
+Operating Systems: Internals and Design Principles (9th ed.). Pearson. Love, R. (2010). 
+
 Linux System Programming (2nd ed.). O’Reilly Media. ANSI. (1986). 
+
 American National Standard for Information Systems — Programming Language C (ANSI X3.159-1989).
