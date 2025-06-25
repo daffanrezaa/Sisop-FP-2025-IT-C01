@@ -108,6 +108,7 @@ Dapat disimpulkan secara singkatnya, wait() dan waitpid() adalah system call ese
   - Mengumpulkan status terminasi dari proses anak tersebut.
   - Membersihkan sumber daya yang terkait dengan proses anak yang telah berakhir,
     mencegahnya menjadi "proses zombie" yang tidak perlu.
+    
 Ini adalah bentuk sinkronisasi yang berfokus pada manajemen siklus hidup proses, memastikan bahwa proses induk memiliki kontrol atas dan dapat bereaksi terhadap akhir dari proses yang telah dilahirkannya.
 
 ## 2.4 Penggunaan Warna Output (ANSI Escape Codes)
