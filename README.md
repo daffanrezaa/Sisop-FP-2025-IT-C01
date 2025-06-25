@@ -40,11 +40,20 @@ Struktur repository:
 **Teori**
 ### Simulasi Fork dan Sinkronisasi Proses
 ## 1. Pendahuluan
+
 Menurut "Operating System Concepts" oleh Silberschatz, Galvin, dan Gagne
 - Proses fork adalah system call yang digunakan untuk membuat proses baru, yang disebut proses anak (child process). Proses anak ini merupakan duplikat dari proses induk (parent process) yang memanggil fork(). Duplikasi ini mencakup salinan memori, register, dan status lainnya.
 - Sistem adalah kejadian setelah fork() berhasil, sistem operasi akan memiliki dua proses yang hampir identik: proses induk dan proses anak. Kedua proses ini kemudian akan melanjutkan eksekusi dari titik setelah panggilan fork(). Perbedaan utama adalah nilai kembalian dari fork(): proses anak menerima 0, sedangkan proses induk menerima Process ID (PID) dari proses anak.
 
-Dalam sistem operasi modern, kemampuan menciptakan dan mengelola proses sangat penting. Sistem call seperti fork() di Unix/Linux memberikan kemampuan kepada sebuah program untuk membuat turunan proses secara paralel. Simulasi ini bertujuan untuk memahami bagaimana proses anak dapat berjalan dengan delay acak, serta bagaimana proses induk dapat menunggu dan mengelola proses anak tersebut menggunakan wait().
+Menurut "Modern Operating Systems" oleh Andrew S. Tanenbaum dan Herbert Bos 
+- Proses fork adalah penciptaan proses baru dengan menyalin ruang alamat proses pemanggil. Ini berarti semua segmen teks, data, dan stack dari proses induk disalin ke proses anak. Kedua proses kemudian berjalan secara independen, meskipun awalnya mereka berbagi banyak kode dan data.
+- Sistem fork adalah inti dari cara sistem operasi Unix-like membuat proses baru. Setelah fork(), seringkali diikuti oleh panggilan execve() (atau varian exec lainnya) oleh proses anak untuk mengganti program yang sedang dieksekusi dengan program baru. Ini adalah pola umum untuk menjalankan program baru.
+
+Menurut "The Linux Programming Interface" oleh Michael Kerrisk
+- Proses fork adalah pembuatan proses anak baru yang merupakan duplikat dari proses pemanggil. Pada Linux, implementasi fork() menggunakan teknik copy-on-write (COW) untuk efisiensi. Ini berarti halaman memori hanya akan disalin ke proses anak jika salah satu proses (induk atau anak) mencoba memodifikasinya. Sebelum modifikasi, mereka berbagi halaman memori yang sama.
+- Sistem fork adalah dasar dari konkurensi dan eksekusi program di lingkungan Unix/Linux. Ini memungkinkan satu proses untuk melahirkan proses lain yang dapat melakukan tugas yang berbeda secara bersamaan. Nilai kembalian yang berbeda (0 untuk anak, PID anak untuk induk) adalah kunci untuk membedakan perilaku kedua proses.
+
+Dari tiga sumber di atas dapat disimpulkan secara umum bahwa fork() adalah system call fundamental dalam sistem operasi mirip Unix (termasuk Linux) yang berfungsi untuk membuat proses baru (proses anak) sebagai duplikat dari proses yang memanggilnya (proses induk).
 
 ## 2. Konsep Dasar
 # 2.1 Proses dan Sistem Call fork()
