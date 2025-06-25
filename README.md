@@ -114,11 +114,11 @@ Ini adalah bentuk sinkronisasi yang berfokus pada manajemen siklus hidup proses,
 ## 2.4 Penggunaan Warna Output (ANSI Escape Codes)
 Untuk meningkatkan keterbacaan, pewarnaan digunakan melalui kode ANSI. Contoh warna: Biru (proses induk), Kuning (status delay anak), Cyan (anak selesai), Hijau (sukses), Merah (error). Ini membantu debugging visual dan pelacakan log pada sistem real-time.
 
-## 3. Implementasi Simulasi
-# 3.1 Struktur Program
+# 3. Implementasi Simulasi
+## 3.1 Struktur Program
 Program utama menciptakan NUM_FORKS proses anak. Proses anak memiliki delay acak dan akan keluar setelah delay.
 
-# 3.2 Alur Eksekusi
+## 3.2 Alur Eksekusi
 1. Proses induk memulai simulasi dan menyiapkan seed acak.
 2. Proses induk membuat 5 anak menggunakan fork().
 3. Setiap anak tidur dengan delay acak dan keluar dengan exit().
@@ -223,6 +223,7 @@ ANSI. (1986). American National Standard for Information Systems — Programming
 
 ## Daftar Pustaka
 
-Sitasi 1
-Sitasi 2
-Sitasi 3
+"Operating System Concepts" oleh Silberschatz, Galvin, dan Gagne
+"Modern Operating Systems" oleh Andrew S. Tanenbaum dan Herbert Bos 
+"The Linux Programming Interface" oleh Michael Kerrisk
+"Advanced Programming in the UNIX Environment" oleh W. Richard Stevens dan Stephen A. Rago
