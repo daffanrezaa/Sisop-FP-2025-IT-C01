@@ -61,7 +61,7 @@ Menurut "The Linux Programming Interface" oleh Michael Kerrisk
 
 Dari tiga sumber di atas dapat disimpulkan secara umum bahwa fork() adalah system call fundamental dalam sistem operasi mirip Unix (termasuk Linux) yang berfungsi untuk membuat proses baru (proses anak) sebagai duplikat dari proses yang memanggilnya (proses induk).
 
-# 2.2 Konsep Delay dan Sleep
+## 2.2 Konsep Delay dan Sleep
 Setiap proses anak disimulasikan memiliki waktu eksekusi yang berbeda menggunakan fungsi sleep(). Fungsi ini menunda eksekusi proses selama sejumlah detik, yang dalam konteks ini disetel secara acak (rand() % 5 + 1), mencerminkan variasi beban kerja atau waktu tanggap proses dalam sistem nyata.
 
 - Menurut "Operating System Concepts" oleh Silberschatz, Galvin, dan Gagne
@@ -82,10 +82,35 @@ Setiap proses anak disimulasikan memiliki waktu eksekusi yang berbeda menggunaka
 
 Dari kedua suber di atas dapat disimpulkan secara umum, sleep() adalah system call yang digunakan untuk menunda eksekusi proses untuk durasi waktu tertentu. Ketika digunakan bersamaan dengan fork(), sleep() dapat ditempatkan di proses induk atau anak untuk mengendalikan (secara non-deterministik) urutan eksekusi relatif antara kedua proses tersebut. Ini berguna untuk simulasi, observasi perilaku penjadwal, atau memberikan jeda sederhana.
 
-# 2.3 Sinkronisasi Proses dengan wait()
+## 2.3 Sinkronisasi Proses dengan wait()
 Proses induk harus memanggil wait() untuk: mengetahui kapan proses anak selesai dan menghindari zombie process (proses yang sudah selesai tapi belum diambil statusnya). Fungsi wait() akan memblokir proses induk hingga satu proses anak menyelesaikan eksekusinya, lalu mengembalikan PID-nya dan status keluarannya.
 
-# 2.4 Penggunaan Warna Output (ANSI Escape Codes)
+- Menurut "Operating System Concepts" oleh Silberschatz, Galvin, dan Gagne
+  wait() adalah system call yang digunakan oleh proses induk untuk menunda
+  eksekusinya sampai salah satu proses anaknya berakhir. Ketika sebuah proses anak
+  berakhir, ia menjadi "zombie process" sampai proses induk memanggil wait() atau
+  waitpid(). wait() akan mengumpulkan status terminasi dari proses anak dan kemudian
+  menghapus entri proses anak tersebut dari tabel proses sistem.
+
+- Menurut  "Advanced Programming in the UNIX Environment" oleh W. Richard Stevens dan Stephen A. Rago
+  wait(): Fungsi ini akan menunda proses pemanggil hingga proses anaknya berakhir.
+  Jika ada beberapa proses anak, wait() akan menunggu anak manapun yang selesai.
+  Fungsi ini mengembalikan Process ID (PID) dari anak yang selesai, atau -1 jika
+  terjadi kesalahan.
+  waitpid(): Fungsi ini lebih fleksibel. Ia memungkinkan proses induk untuk menunggu
+  anak tertentu (dengan menentukan PID anak tersebut), atau menunggu anak manapun.
+  Selain itu, waitpid() memiliki opsi (options) yang memungkinkan proses induk untuk
+  tidak memblokir, artinya jika tidak ada anak yang sudah selesai, waitpid() akan
+  segera kembali daripada menunggu.
+
+Dapat disimpulkan secara singkatnya, wait() dan waitpid() adalah system call esensial yang memungkinkan proses induk untuk:
+  - Menunggu hingga proses anaknya selesai.
+  - Mengumpulkan status terminasi dari proses anak tersebut.
+  - Membersihkan sumber daya yang terkait dengan proses anak yang telah berakhir,
+    mencegahnya menjadi "proses zombie" yang tidak perlu.
+Ini adalah bentuk sinkronisasi yang berfokus pada manajemen siklus hidup proses, memastikan bahwa proses induk memiliki kontrol atas dan dapat bereaksi terhadap akhir dari proses yang telah dilahirkannya.
+
+## 2.4 Penggunaan Warna Output (ANSI Escape Codes)
 Untuk meningkatkan keterbacaan, pewarnaan digunakan melalui kode ANSI. Contoh warna: Biru (proses induk), Kuning (status delay anak), Cyan (anak selesai), Hijau (sukses), Merah (error). Ini membantu debugging visual dan pelacakan log pada sistem real-time.
 
 ## 3. Implementasi Simulasi
