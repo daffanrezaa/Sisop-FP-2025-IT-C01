@@ -127,15 +127,6 @@ Program utama menciptakan NUM_FORKS proses anak. Proses anak memiliki delay acak
 Simulasi ini menggambarkan prinsip dasar multiprogramming, asynchronous execution, dan proses sinkronisasi dalam OS. Penggunaan delay dan wait() memungkinkan kita melihat perbedaan urutan selesai antar proses. Hal ini berkaitan erat dengan scheduling, CPU resource sharing, dan proses lifecycle.
 5. Kesimpulan
 Melalui simulasi ini, kita memahami secara praktis cara kerja fork() dalam menciptakan proses anak, bagaimana delay mempengaruhi urutan eksekusi, serta bagaimana wait() menjaga keteraturan dan mencegah zombie process. Simulasi ini penting sebagai dasar untuk memahami konsep lanjutan seperti exec(), signal handling, dan inter-process communication (IPC).
-6. Daftar Pustaka
-Silberschatz, A., Galvin, P. B., & Gagne, G. (2020). Operating System Concepts (10th ed.). Wiley.
-Tanenbaum, A. S., & Bos, H. (2015). Modern Operating Systems (4th ed.). Pearson.
-Kerrisk, M. (2010). The Linux Programming Interface: A Linux and UNIX System Programming Handbook. No Starch Press.
-Robbins, K. A., & Robbins, S. (2003). Unix Systems Programming: Communication, Concurrency and Threads. Prentice Hall.
-Bach, M. J. (1986). The Design of the UNIX Operating System. Prentice-Hall.
-Stallings, W. (2018). Operating Systems: Internals and Design Principles (9th ed.). Pearson.
-Love, R. (2010). Linux System Programming (2nd ed.). O’Reilly Media.
-ANSI. (1986). American National Standard for Information Systems — Programming Language C (ANSI X3.159-1989).
 
 ...
 
@@ -222,11 +213,16 @@ ANSI. (1986). American National Standard for Information Systems — Programming
 
 
 ## Daftar Pustaka
-
-"Operating System Concepts" oleh Silberschatz, Galvin, dan Gagne
-
-"Modern Operating Systems" oleh Andrew S. Tanenbaum dan Herbert Bos 
-
-"The Linux Programming Interface" oleh Michael Kerrisk
-
-"Advanced Programming in the UNIX Environment" oleh W. Richard Stevens dan Stephen A. Rago
+Silberschatz, A., Galvin, P. B., & Gagne, G. (2020). 
+Operating System Concepts (10th ed.). Wiley.
+Tanenbaum, A. S., & Bos, H. (2015). 
+Modern Operating Systems (4th ed.). Pearson.
+Kerrisk, M. (2010). 
+The Linux Programming Interface: A Linux and UNIX System Programming Handbook. 
+Robbins, K. A., & Robbins, S. (2003). 
+Unix Systems Programming: Communication, Concurrency and Threads. Prentice Hall. Bach, M. J. (1986). 
+The Design of the UNIX Operating System. Prentice-Hall. Stallings, W. (2018). 
+Operating Systems: Internals and Design Principles (9th ed.). 
+Pearson. Love, R. (2010). 
+Linux System Programming (2nd ed.). O’Reilly Media. ANSI. (1986). 
+American National Standard for Information Systems — Programming Language C (ANSI X3.159-1989).
