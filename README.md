@@ -40,6 +40,10 @@ Struktur repository:
 **Teori**
 ### Simulasi Fork dan Sinkronisasi Proses
 ## 1. Pendahuluan
+Menurut "Operating System Concepts" oleh Silberschatz, Galvin, dan Gagne
+- Proses fork adalah system call yang digunakan untuk membuat proses baru, yang disebut proses anak (child process). Proses anak ini merupakan duplikat dari proses induk (parent process) yang memanggil fork(). Duplikasi ini mencakup salinan memori, register, dan status lainnya.
+- Sistem adalah kejadian setelah fork() berhasil, sistem operasi akan memiliki dua proses yang hampir identik: proses induk dan proses anak. Kedua proses ini kemudian akan melanjutkan eksekusi dari titik setelah panggilan fork(). Perbedaan utama adalah nilai kembalian dari fork(): proses anak menerima 0, sedangkan proses induk menerima Process ID (PID) dari proses anak.
+
 Dalam sistem operasi modern, kemampuan menciptakan dan mengelola proses sangat penting. Sistem call seperti fork() di Unix/Linux memberikan kemampuan kepada sebuah program untuk membuat turunan proses secara paralel. Simulasi ini bertujuan untuk memahami bagaimana proses anak dapat berjalan dengan delay acak, serta bagaimana proses induk dapat menunggu dan mengelola proses anak tersebut menggunakan wait().
 
 ## 2. Konsep Dasar
