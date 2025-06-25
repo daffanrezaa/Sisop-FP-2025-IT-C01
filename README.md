@@ -224,6 +224,9 @@ ANSI. (1986). American National Standard for Information Systems — Programming
 ## Daftar Pustaka
 
 "Operating System Concepts" oleh Silberschatz, Galvin, dan Gagne
+
 "Modern Operating Systems" oleh Andrew S. Tanenbaum dan Herbert Bos 
+
 "The Linux Programming Interface" oleh Michael Kerrisk
+
 "Advanced Programming in the UNIX Environment" oleh W. Richard Stevens dan Stephen A. Rago
