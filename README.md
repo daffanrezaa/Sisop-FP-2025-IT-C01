@@ -102,7 +102,7 @@ Proses induk harus memanggil wait() untuk: mengetahui kapan proses anak selesai 
   waitpid(). wait() akan mengumpulkan status terminasi dari proses anak dan kemudian
   menghapus entri proses anak tersebut dari tabel proses sistem.
 
-!! (( halaman 110 - 111 ))
+!! (( di halaman 110 - 111 ))
 
 - Menurut  "Advanced Programming in the UNIX Environment" oleh W. Richard Stevens dan Stephen A. Rago
   wait(): Fungsi ini akan menunda proses pemanggil hingga proses anaknya berakhir.
@@ -115,7 +115,7 @@ Proses induk harus memanggil wait() untuk: mengetahui kapan proses anak selesai 
   tidak memblokir, artinya jika tidak ada anak yang sudah selesai, waitpid() akan
   segera kembali daripada menunggu.
 
-!! (( halaman 238 ))
+!! (( di halaman 238 ))
 
 Dapat disimpulkan secara singkatnya, wait() dan waitpid() adalah system call esensial yang memungkinkan proses induk untuk:
   - Menunggu hingga proses anaknya selesai.
