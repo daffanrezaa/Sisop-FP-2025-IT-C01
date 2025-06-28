@@ -88,6 +88,8 @@ Setiap proses anak disimulasikan memiliki waktu eksekusi yang berbeda menggunaka
   memperkenalkan jeda. Dalam konteks fork(), baik proses induk maupun proses anak
   dapat memanggil sleep().
 
+!! (( di halaman 243 ))
+
 Dari kedua suber di atas dapat disimpulkan secara umum, sleep() adalah system call yang digunakan untuk menunda eksekusi proses untuk durasi waktu tertentu. Ketika digunakan bersamaan dengan fork(), sleep() dapat ditempatkan di proses induk atau anak untuk mengendalikan (secara non-deterministik) urutan eksekusi relatif antara kedua proses tersebut. Ini berguna untuk simulasi, observasi perilaku penjadwal, atau memberikan jeda sederhana.
 
 ## 2.3 Sinkronisasi Proses dengan wait()
@@ -100,6 +102,8 @@ Proses induk harus memanggil wait() untuk: mengetahui kapan proses anak selesai 
   waitpid(). wait() akan mengumpulkan status terminasi dari proses anak dan kemudian
   menghapus entri proses anak tersebut dari tabel proses sistem.
 
+!! (( halaman 110 - 111 ))
+
 - Menurut  "Advanced Programming in the UNIX Environment" oleh W. Richard Stevens dan Stephen A. Rago
   wait(): Fungsi ini akan menunda proses pemanggil hingga proses anaknya berakhir.
   Jika ada beberapa proses anak, wait() akan menunggu anak manapun yang selesai.
@@ -110,6 +114,8 @@ Proses induk harus memanggil wait() untuk: mengetahui kapan proses anak selesai 
   Selain itu, waitpid() memiliki opsi (options) yang memungkinkan proses induk untuk
   tidak memblokir, artinya jika tidak ada anak yang sudah selesai, waitpid() akan
   segera kembali daripada menunggu.
+
+!! (( halaman 238 ))
 
 Dapat disimpulkan secara singkatnya, wait() dan waitpid() adalah system call esensial yang memungkinkan proses induk untuk:
   - Menunggu hingga proses anaknya selesai.
