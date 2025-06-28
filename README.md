@@ -77,7 +77,9 @@ Setiap proses anak disimulasikan memiliki waktu eksekusi yang berbeda menggunaka
   sinkronisasi yang eksplisit. Jika salah satu proses memanggil sleep(), proses
   tersebut akan menghentikan eksekusinya untuk jangka waktu yang ditentukan,
   memungkinkan proses lain (induk atau anak) untuk dieksekusi lebih dulu oleh
-  penjadwal sistem operasi.
+  penjadwal sistem operasi. 
+
+!! (( tidak ada penjelasan secara text lengkap, tetapi dapat dianalisis ))
 
 - Menurut  "Advanced Programming in the UNIX Environment" oleh W. Richard Stevens dan Stephen A. Rago
   sleep() sebagai Fungsi Penundaan Waktu: Stevens dan Rago merinci sleep() sebagai
