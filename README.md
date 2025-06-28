@@ -207,7 +207,7 @@ Melalui simulasi ini, kita memahami secara praktis cara kerja fork() dalam menci
 
 - Cara Compile dan Run Program
   - Compile :
-    `gcc fork_sim.cpp -o fork_simu.exe`
+    `gcc fork_sim.cpp -o fork_sim.exe`
 
   - Run :
     `./fork_sim`
